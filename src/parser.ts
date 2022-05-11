@@ -106,7 +106,8 @@ function parseMessages(runs: MessageRun[]): MessageItem[] {
       // Emoji
       const thumbnail = run.emoji.image.thumbnails.shift()
       const isCustomEmoji = Boolean(run.emoji.isCustomEmoji)
-      const shortcut = run.emoji.shortcuts[0]
+      // const shortcut = run.emoji.shortcuts[0]
+      const shortcut = (run.emoji?.shortcuts?.length > 0) ? run.emoji?.shortcuts[0] : "";
       return {
         url: thumbnail ? thumbnail.url : "",
         alt: shortcut,
