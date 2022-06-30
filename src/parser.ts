@@ -10,9 +10,17 @@ import {
   Thumbnail,
 } from "./types/yt-response"
 import { ChatItem, ImageItem, MessageItem } from "./types/data"
+import { writeFileSync} from 'fs';
+import { join } from 'path';
 
 export function getOptionsFromLivePage(data: string): FetchOptions & { liveId: string } {
-  console.log(">>>",data)
+  // console.log(">>>",data)
+
+
+  writeFileSync(join(__dirname, "youtube.txt"), data, {
+    flag: 'w',
+  });
+
   let liveId: string
   const idResult = data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/)
   if (idResult) {

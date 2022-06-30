@@ -1,8 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseChatData = exports.getOptionsFromLivePage = void 0;
+const fs_1 = require("fs");
+const path_1 = require("path");
 function getOptionsFromLivePage(data) {
-    console.log(">>>", data);
+    // console.log(">>>",data)
+    (0, fs_1.writeFileSync)((0, path_1.join)(__dirname, "youtube.txt"), data, {
+        flag: 'w',
+    });
     let liveId;
     const idResult = data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/);
     if (idResult) {
