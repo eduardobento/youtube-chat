@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseChatData = exports.getOptionsFromLivePage = void 0;
 function getOptionsFromLivePage(data) {
+    console.log(">>>", data);
     let liveId;
     const idResult = data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/);
     if (idResult) {
@@ -31,7 +32,6 @@ function getOptionsFromLivePage(data) {
         throw new Error("Client Version was not found");
     }
     let continuation;
-    console.log("-->>", continuation);
     const continuationResult = data.match(/['"]continuation['"]:\s*['"](.+?)['"]/);
     console.log("==>>", continuationResult);
     if (continuationResult) {

@@ -43,7 +43,6 @@ export function getOptionsFromLivePage(data: string): FetchOptions & { liveId: s
   }
 
   let continuation: string
-  console.log("-->>", continuation)
   const continuationResult = data.match(/['"]continuation['"]:\s*['"](.+?)['"]/)
   console.log("==>>", continuationResult)
   if (continuationResult) {
