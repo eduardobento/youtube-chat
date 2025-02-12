@@ -8,7 +8,7 @@ interface LiveChatEvents {
   start: (liveId: string) => void
   end: (reason?: string) => void
   chat: (chatItem: ChatItem) => void
-  error: (err: Error | unknown) => void
+  error: (err: Error | unknown, id: { channelId: string } | { liveId: string }) => void
 }
 
 /**
@@ -47,7 +47,7 @@ export class LiveChat extends (EventEmitter as new () => TypedEmitter<LiveChatEv
       this.emit("start", this.liveId)
       return true
     } catch (err) {
-      this.emit("error", err)
+      this.emit("error", err, this.#id)
       return false
     }
   }
