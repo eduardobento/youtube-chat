@@ -9,8 +9,6 @@ function getOptionsFromLivePage(data, reqliveId) {
             liveId = idResult[1];
         }
         else {
-            console.log(">>>", data);
-            console.log(">>>", data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/));
             throw new Error("Live Stream was not found");
         }
     }

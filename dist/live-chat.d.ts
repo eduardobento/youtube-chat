@@ -4,11 +4,7 @@ interface LiveChatEvents {
     start: (liveId: string) => void;
     end: (reason?: string) => void;
     chat: (chatItem: ChatItem) => void;
-    error: (err: Error | unknown, id: {
-        channelId: string;
-    } | {
-        liveId: string;
-    }) => void;
+    error: (err: Error | unknown) => void;
 }
 declare const LiveChat_base: new () => TypedEmitter<LiveChatEvents>;
 /**

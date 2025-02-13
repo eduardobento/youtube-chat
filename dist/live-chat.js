@@ -58,7 +58,7 @@ class LiveChat extends events_1.EventEmitter {
                 return true;
             }
             catch (err) {
-                this.emit("error", err, __classPrivateFieldGet(this, _LiveChat_id, "f"));
+                this.emit("error", err);
                 return false;
             }
         });
@@ -76,7 +76,7 @@ _LiveChat_observer = new WeakMap(), _LiveChat_options = new WeakMap(), _LiveChat
     return __awaiter(this, void 0, void 0, function* () {
         if (!__classPrivateFieldGet(this, _LiveChat_options, "f")) {
             const message = "Not found options";
-            this.emit("error", new Error(message), __classPrivateFieldGet(this, _LiveChat_id, "f"));
+            this.emit("error", new Error(message));
             this.stop(message);
             return;
         }
@@ -86,7 +86,7 @@ _LiveChat_observer = new WeakMap(), _LiveChat_options = new WeakMap(), _LiveChat
             __classPrivateFieldGet(this, _LiveChat_options, "f").continuation = continuation;
         }
         catch (err) {
-            this.emit("error", err, __classPrivateFieldGet(this, _LiveChat_id, "f"));
+            this.emit("error", err);
         }
     });
 };
