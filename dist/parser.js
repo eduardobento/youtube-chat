@@ -1,16 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseChatData = exports.getOptionsFromLivePage = void 0;
-function getOptionsFromLivePage(data) {
-    let liveId;
-    const idResult = data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/);
-    if (idResult) {
-        liveId = idResult[1];
-    }
-    else {
-        console.log(">>>", data);
-        console.log(">>>", data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/));
-        throw new Error("Live Stream was not found");
+function getOptionsFromLivePage(data, reqliveId) {
+    let liveId = reqliveId;
+    if (!liveId) {
+        const idResult = data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/);
+        if (idResult) {
+            liveId = idResult[1];
+        }
+        else {
+            console.log(">>>", data);
+            console.log(">>>", data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/));
+            throw new Error("Live Stream was not found");
+        }
     }
     const replayResult = data.match(/['"]isReplay['"]:\s*(true)/);
     if (replayResult) {

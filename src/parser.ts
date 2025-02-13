@@ -11,15 +11,18 @@ import {
 } from "./types/yt-response"
 import { ChatItem, ImageItem, MessageItem } from "./types/data"
 
-export function getOptionsFromLivePage(data: string): FetchOptions & { liveId: string } {
-  let liveId: string
-  const idResult = data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/)
-  if (idResult) {
-    liveId = idResult[1]
-  } else {
-    console.log(">>>",data)
-    console.log(">>>",data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/))
-    throw new Error("Live Stream was not found")
+export function getOptionsFromLivePage(data: string, reqliveId?: string): FetchOptions & { liveId: string } {
+  let liveId = reqliveId
+
+  if (!liveId) {
+    const idResult = data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/)
+    if (idResult) {
+      liveId = idResult[1]
+    } else {
+      console.log(">>>",data)
+      console.log(">>>",data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/))
+      throw new Error("Live Stream was not found")
+    }
   }
 
   const replayResult = data.match(/['"]isReplay['"]:\s*(true)/)

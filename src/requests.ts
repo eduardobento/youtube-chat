@@ -24,5 +24,5 @@ export async function fetchLivePage(id: { channelId: string } | { liveId: string
       ? `https://www.youtube.com/channel/${id.channelId}/live`
       : `https://www.youtube.com/watch?v=${id.liveId}`
   const res = await axios.get(url)
-  return getOptionsFromLivePage(res.data.toString())
+  return getOptionsFromLivePage(res.data.toString(), "liveId" in id ? id.liveId : undefined)
 }

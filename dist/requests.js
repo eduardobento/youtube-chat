@@ -37,7 +37,7 @@ function fetchLivePage(id) {
             ? `https://www.youtube.com/channel/${id.channelId}/live`
             : `https://www.youtube.com/watch?v=${id.liveId}`;
         const res = yield axios_1.default.get(url);
-        return (0, parser_1.getOptionsFromLivePage)(res.data.toString());
+        return (0, parser_1.getOptionsFromLivePage)(res.data.toString(), "liveId" in id ? id.liveId : undefined);
     });
 }
 exports.fetchLivePage = fetchLivePage;
