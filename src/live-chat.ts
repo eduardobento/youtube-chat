@@ -63,7 +63,7 @@ export class LiveChat extends (EventEmitter as new () => TypedEmitter<LiveChatEv
   async #execute() {
     if (!this.#options) {
       const message = "Not found options"
-      this.emit("error", new Error(message))
+      this.emit("error", new Error(message), this.#id)
       this.stop(message)
       return
     }
@@ -74,7 +74,7 @@ export class LiveChat extends (EventEmitter as new () => TypedEmitter<LiveChatEv
 
       this.#options.continuation = continuation
     } catch (err) {
-      this.emit("error", err)
+      this.emit("error", err, this.#id)
     }
   }
 }
