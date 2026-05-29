@@ -100,10 +100,10 @@ function parseMessages(runs) {
         }
         else {
             // Emoji
-            const thumbnail = run.emoji.image.thumbnails.shift();
+            var _d, _e;
+            const thumbnail = (_d = run.emoji.image) === null || _d === void 0 ? void 0 : (_e = _d.thumbnails) === null || _e === void 0 ? void 0 : _e.shift();
             const isCustomEmoji = Boolean(run.emoji.isCustomEmoji);
-            // const shortcut = run.emoji.shortcuts[0]
-            const shortcut = (((_b = (_a = run.emoji) === null || _a === void 0 ? void 0 : _a.shortcuts) === null || _b === void 0 ? void 0 : _b.length) > 0) ? (_c = run.emoji) === null || _c === void 0 ? void 0 : _c.shortcuts[0] : "";
+            const shortcut = (_c = (_b = (_a = run.emoji) === null || _a === void 0 ? void 0 : _a.shortcuts) === null || _b === void 0 ? void 0 : _b[0]) !== null && _c !== void 0 ? _c : "";
             return {
                 url: thumbnail ? thumbnail.url : "",
                 alt: shortcut,
