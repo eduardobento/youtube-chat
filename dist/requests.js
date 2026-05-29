@@ -31,12 +31,17 @@ function fetchChat(options) {
     });
 }
 exports.fetchChat = fetchChat;
+const BROWSER_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+    'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+};
 function fetchLivePage(id) {
     return __awaiter(this, void 0, void 0, function* () {
         const url = "channelId" in id
             ? `https://www.youtube.com/channel/${id.channelId}/live`
             : `https://www.youtube.com/watch?v=${id.liveId}`;
-        const res = yield axios_1.default.get(url);
+        const res = yield axios_1.default.get(url, { headers: BROWSER_HEADERS });
         return (0, parser_1.getOptionsFromLivePage)(res.data.toString());
     });
 }
